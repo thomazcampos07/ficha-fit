@@ -1,106 +1,82 @@
 # ficha-fit
 
-Este projeto é um aplicativo web interativo desenvolvido com **Streamlit** que gera **fichas de treino personalizadas** usando a API da OpenAI. O usuário preenche seus dados, objetivos, experiência e preferências, e o app cria uma ficha de treino detalhada e personalizada.
+**Streamlit app that generates personalized workout plans with the OpenAI API.**
+The user fills in a form (age, goal, experience, weekly availability, focus
+areas, injuries and restrictions), and the app fills a prompt template with
+those answers and returns a day-by-day plan with exercises and sets. The UI is
+in Portuguese.
+
+- **Stack:** Python, Streamlit, OpenAI API, python-dotenv
+- **Run it:** `pip install -r requirements.txt`, put `OPENAI_API_KEY=...` in a
+  `.env` file, then `streamlit run app.py`
+- **Customize:** the prompt lives in [`prompt.txt`](prompt.txt), separate from
+  the code
 
 ---
+
+## Sobre
+
+Aplicativo web em **Streamlit** que gera **fichas de treino personalizadas**
+com a API da OpenAI. O usuário preenche seus dados, objetivos, experiência e
+preferências, e o app cria uma ficha de treino detalhada.
 
 ## Funcionalidades
 
 - Formulário interativo para coleta de dados do usuário:
-    - Idade, sexo, peso, altura
-    - Objetivo principal
-    - Nível de experiência
-    - Disponibilidade semanal e tempo por treino
-    - Preferências de treino e foco em grupos musculares
-    - Lesões e restrições
-    - Chamada à API da OpenAI (gpt-3.5-turbo) para gerar a ficha personalizada
-    - Tela de resultado separada do formulário
-    - Opção de gerar uma nova ficha sem reiniciar o app
-    - Armazenamento seguro de chaves da API usando `.env`
-
----
+  - Idade, sexo, peso, altura
+  - Objetivo principal
+  - Nível de experiência
+  - Disponibilidade semanal e tempo por treino
+  - Preferências de treino e foco em grupos musculares
+  - Lesões e restrições
+- Chamada à API da OpenAI (`gpt-3.5-turbo`) para gerar a ficha
+- Tela de resultado separada do formulário
+- Opção de gerar uma nova ficha sem reiniciar o app
+- Chave da API fora do código, no `.env`
 
 ## Estrutura do projeto
 
+```
 ficha-fit/
-├── app.py             # Script principal do Streamlit  
-├── prompt.txt         # Template de prompt para a OpenAI  
-├── .env               # Chave da API OpenAI (não versionar)  
-├── requirements.txt   # Dependências do projeto  
-└── README.md          # Este arquivo  
-
----
+├── app.py             # Interface Streamlit e chamada à OpenAI
+├── prompt.txt         # Template de prompt para a OpenAI
+├── requirements.txt   # Dependências
+└── .env               # Chave da API OpenAI (não versionado)
+```
 
 ## Instalação
 
-1. Clone o repositório:  
-   `git clone https://github.com/seu-usuario/ficha-fit.git`  
-   `cd ficha-fit`
-
-2. Crie um ambiente virtual (opcional, mas recomendado):  
-   `python -m venv .venv`  
-   Linux/Mac: `source .venv/bin/activate`  
-   Windows: `.venv\Scripts\activate`
-
-3. Instale as dependências:  
-   `pip install -r requirements.txt`
-
-4. Configure sua chave da OpenAI no arquivo `.env`:  
-   `OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX`
-
-> ⚠️ Nunca compartilhe sua API Key publicamente.
-
----
+```bash
+git clone https://github.com/thomazcampos07/ficha-fit.git
+cd ficha-fit
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+echo "OPENAI_API_KEY=sk-..." > .env
+```
 
 ## Como rodar
 
-Execute o app com:  
-`streamlit run app.py`  
+```bash
+streamlit run app.py
+```
 
-O aplicativo abrirá em seu navegador padrão, mostrando o formulário para preenchimento. Após enviar, será exibida a ficha de treino em uma nova tela.
-
----
-
-## Dependências
-
-- streamlit  
-- openai  
-- python-dotenv  
-
----
+O app abre no navegador com o formulário. Depois de enviar, a ficha aparece
+numa nova tela.
 
 ## Personalização do prompt
 
-O arquivo `prompt.txt` contém o template do prompt usado para gerar a ficha de treino. Você pode editar este arquivo para ajustar a linguagem, o detalhamento ou as regras de criação da ficha.
-
-Exemplo de conteúdo do `prompt.txt`:
-
-Você é um treinador especialista. Crie uma ficha de treino detalhada para o seguinte usuário:
-
-Idade: {idade}  
-Sexo: {sexo}  
-Peso: {peso}  
-Altura: {altura}  
-Objetivo: {objetivo}  
-Experiência: {experiencia}  
-Dias por semana: {dias_semana}  
-Tempo por treino: {tempo_treino} minutos  
-Preferências: {preferencias}  
-Foco extra: {foco}  
-Lesões/limitações: {lesoes}  
-Restrições: {restricoes}  
-
-Responda de forma clara e organizada, detalhando os exercícios por dia e séries recomendadas.
-
----
+O `prompt.txt` contém o template usado para gerar a ficha. Dá para editar a
+linguagem, o detalhamento ou as regras sem mexer no código. As variáveis entre
+chaves (`{idade}`, `{objetivo}`, `{lesoes}` etc.) são preenchidas com as
+respostas do formulário.
 
 ## Licença
 
-Este projeto é open-source e pode ser usado livremente para fins educacionais ou pessoais.
-
----
+[MIT](LICENSE)
 
 ## Contato
 
-Desenvolvido por **Thomaz Campos**  
-[GitHub](https://github.com/seu-usuario) | [Email](mailto:seu-email@exemplo.com)
+Desenvolvido por **Thomaz Campos** ·
+[LinkedIn](https://www.linkedin.com/in/thomaz-campos) ·
+[GitHub](https://github.com/thomazcampos07)
